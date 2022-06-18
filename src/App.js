@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Container from './components/Container';
 import Header from './components/Header';
 import fetchAllCountries from './service/fetchAllCountries';
 import CountriesList from './components/CounrtriesList';
@@ -45,7 +46,7 @@ class App extends Component {
 
   render() {
     return (
-      <>
+      <Container>
         <Header />
         <CountriesList
           countries={this.state.countries}
@@ -54,7 +55,7 @@ class App extends Component {
         {this.state.showModal && (
           <Modal onClose={this.toggleModal} country={this.state.country} />
         )}
-      </>
+      </Container>
       // <div className="App">
       //   <header className="App-header">
       //     <img src={logo} className="App-logo" alt="logo" />

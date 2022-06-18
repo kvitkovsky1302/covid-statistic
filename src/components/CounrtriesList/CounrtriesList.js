@@ -6,8 +6,15 @@ function CountriesList(props) {
   const { countries, onOpenModal } = props;
 
   return (
-    <ol className={s.ImageGallery}>
-      {countries.map(({ ID, Country, TotalConfirmed }) => {
+    <ol className={s.countriesList}>
+      <li className={s.countryDataItem}>
+        <div className={s.countryContainer}>
+          <p className={s.countryNumber}>№</p>
+          <p className={s.countryName}>Country</p>
+        </div>
+        <p className={s.countryTotalConfirmed}>Total Confirmed</p>
+      </li>
+      {countries.map(({ ID, Country, TotalConfirmed }, index) => {
         return (
           // <ImageGalleryItem
           //   key={id}
@@ -16,23 +23,17 @@ function CountriesList(props) {
           //   onOpenModal={onOpenModal}
           // />
           <li
-            className={s.ImageGalleryItem}
+            className={s.countryDataItem}
             key={ID}
             onClick={e => {
-              onOpenModal(e.target.innerText);
+              onOpenModal(e.currentTarget.firstChild.innerText);
             }}
           >
-            <p>{Country}</p>
-            <p>{TotalConfirmed}</p>
-            {/* <img
-              onClick={e => {
-                onOpenModal(e.target.dataset.large);
-              }}
-              src={webformatURL}
-              alt=""
-              className={s.ImageGalleryItemImage}
-              data-large={largeImageURL}
-            /> */}
+            <div className={s.countryContainer}>
+              <p className={s.countryNumber}>{index + 1}</p>
+              <p className={s.countryName}>{Country}</p>
+            </div>
+            <p className={s.countryTotalConfirmed}>{TotalConfirmed}</p>
           </li>
         );
       })}

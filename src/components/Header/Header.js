@@ -3,6 +3,7 @@ import { Component } from 'react';
 import s from './Header.module.css';
 // import SearchForm from '../SearchForm';
 import LogoImage from './logo.png';
+import { ReactComponent as Magnifier } from './magnifier.svg';
 
 class Header extends Component {
   state = {
@@ -25,21 +26,19 @@ class Header extends Component {
   render() {
     const { searchQuery } = this.state;
     return (
-      <header className={s.Searchbar}>
-        <img src={LogoImage} alt="user avatar" />
-        <h1>Statistic</h1>
+      <header className={s.header}>
+        <div className={s.logo}>
+          <img src={LogoImage} alt="user avatar" className={s.logoImage} />
+          <h1 className={s.statistic}>Statistic</h1>
+        </div>
         {/* <SearchForm
           onSubmit={this.handleSubmit}
           onChange={this.handleSearchQuery}
           value={searchQuery}
         /> */}
-        <form className={s.SearchForm} onSubmit={this.handleSubmit}>
-          <button type="submit" className={s.SearchFormButton}>
-            <span className={s.SearchFormButtonLabel}>Search</span>
-          </button>
-
+        <form className={s.searchForm} onSubmit={this.handleSubmit}>
           <input
-            className={s.SearchFormInput}
+            className={s.searchFormInput}
             type="text"
             autoComplete="off"
             autoFocus
@@ -47,6 +46,9 @@ class Header extends Component {
             value={searchQuery}
             placeholder="Search..."
           />
+          <button type="submit" className={s.searchFormButton}>
+            <Magnifier className={s.magnifier} />
+          </button>
         </form>
       </header>
     );
