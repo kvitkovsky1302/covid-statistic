@@ -7,7 +7,7 @@ function CountriesList(props) {
 
   return (
     <ol className={s.countriesList}>
-      <li className={s.countryDataItem}>
+      <li className={`${s.countryDataItem} ${s.tableHead}`}>
         <div className={s.countryContainer}>
           <p className={s.countryNumber}>№</p>
           <p className={s.countryName}>Country</p>
@@ -26,7 +26,7 @@ function CountriesList(props) {
             className={s.countryDataItem}
             key={ID}
             onClick={e => {
-              onOpenModal(e.currentTarget.firstChild.innerText);
+              onOpenModal(e.currentTarget.firstChild.lastChild.innerText);
             }}
           >
             <div className={s.countryContainer}>

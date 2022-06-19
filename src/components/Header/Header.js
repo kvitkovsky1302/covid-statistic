@@ -44,6 +44,7 @@ class Header extends Component {
             autoFocus
             onChange={this.handleSearchQuery}
             value={searchQuery}
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             placeholder="Search..."
           />
           <button type="submit" className={s.searchFormButton}>

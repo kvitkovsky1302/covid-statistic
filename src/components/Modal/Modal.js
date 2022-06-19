@@ -24,14 +24,25 @@ class Modal extends Component {
 
   render() {
     const {
-      country: { TotalConfirmed, TotalDeaths, TotalRecovered },
+      country: { Country, TotalConfirmed, TotalDeaths, TotalRecovered },
     } = this.props;
+    console.log('Modal --> this.props', this.props);
     return (
       <div className={s.Overlay} onClick={this.handleBackdropClick}>
-        <div className={s.Modal}>
-          <p>TotalConfirmed: {TotalConfirmed}</p>
-          <p>TotalDeaths: {TotalDeaths}</p>
-          <p>TotalRecovered: {TotalRecovered}</p>
+        <div className={s.modal}>
+          <h2 className={s.countryName}>{Country}</h2>
+          <p className={s.countryData}>
+            <span>TotalConfirmed:</span>
+            <span>{TotalConfirmed}</span>
+          </p>
+          <p className={s.countryData}>
+            <span>TotalDeaths:</span>
+            <span> {TotalDeaths}</span>
+          </p>
+          <p className={s.countryData}>
+            <span>TotalRecovered:</span>
+            <span> {TotalRecovered}</span>
+          </p>
           {/* <img src={this.props.bigImageUrl} alt="" /> */}
         </div>
       </div>
