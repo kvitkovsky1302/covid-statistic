@@ -1,4 +1,7 @@
 import { Component } from 'react';
+import { ReactComponent as Heartbeat } from './heartbeat.svg';
+import { ReactComponent as Skull } from './skull.svg';
+import { ReactComponent as Medical } from './medical.svg';
 import s from './Modal.module.css';
 
 class Modal extends Component {
@@ -16,7 +19,7 @@ class Modal extends Component {
     }
   };
 
-  handleBackdropClick = e => {
+  handleCloseClick = e => {
     if (e.target === e.currentTarget) {
       this.props.onClose();
     }
@@ -26,24 +29,36 @@ class Modal extends Component {
     const {
       country: { Country, TotalConfirmed, TotalDeaths, TotalRecovered },
     } = this.props;
-    console.log('Modal --> this.props', this.props);
     return (
-      <div className={s.Overlay} onClick={this.handleBackdropClick}>
+      <div className={s.Overlay} onClick={this.handleCloseClick}>
         <div className={s.modal}>
           <h2 className={s.countryName}>{Country}</h2>
-          <p className={s.countryData}>
-            <span>TotalConfirmed:</span>
-            <span>{TotalConfirmed}</span>
-          </p>
-          <p className={s.countryData}>
-            <span>TotalDeaths:</span>
-            <span> {TotalDeaths}</span>
-          </p>
-          <p className={s.countryData}>
-            <span>TotalRecovered:</span>
-            <span> {TotalRecovered}</span>
-          </p>
-          {/* <img src={this.props.bigImageUrl} alt="" /> */}
+          <div className={s.countryAllData}>
+            <p className={s.countryData}>
+              <span className={s.totalConfirmed}>
+                <Heartbeat className={s.iconHeartbeat} />
+                TotalConfirmed
+              </span>
+              <span>{TotalConfirmed}</span>
+            </p>
+            <p className={s.countryData}>
+              <span className={s.totalDeaths}>
+                <Skull className={s.iconScull} />
+                TotalDeaths
+              </span>
+              <span> {TotalDeaths}</span>
+            </p>
+            <p className={s.countryData}>
+              <span className={s.totalRecovered}>
+                <Medical className={s.iconMedical} />
+                TotalRecovered
+              </span>
+              <span> {TotalRecovered}</span>
+            </p>
+          </div>
+          <button onClick={this.handleCloseClick} className={s.confirmButton}>
+            OK
+          </button>
         </div>
       </div>
     );

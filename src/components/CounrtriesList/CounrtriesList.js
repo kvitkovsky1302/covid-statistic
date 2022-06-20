@@ -1,4 +1,3 @@
-// import ImageGalleryItem from '../ImageGalleryItem';
 import PropTypes from 'prop-types';
 import s from './CountriesList.module.css';
 
@@ -16,12 +15,6 @@ function CountriesList(props) {
       </li>
       {countries.map(({ ID, Country, TotalConfirmed }, index) => {
         return (
-          // <ImageGalleryItem
-          //   key={id}
-          //   webformatURL={webformatURL}
-          //   largeImageURL={largeImageURL}
-          //   onOpenModal={onOpenModal}
-          // />
           <li
             className={s.countryDataItem}
             key={ID}

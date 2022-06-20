@@ -12,11 +12,12 @@ class Header extends Component {
 
   handleSearchQuery = e => {
     this.setState({ searchQuery: e.currentTarget.value });
+    this.props.onSubmit(e.currentTarget.value);
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.searchQuery);
+    // this.props.onSubmit(this.state.searchQuery);
     this.setState({ searchQuery: '' });
     // if (this.state.searchQuery === '') {
     //   toast.error('Please, enter your request!');
