@@ -1,0 +1,79 @@
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1200;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 600px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.countryName {
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 56px;
+  margin-bottom: 38px;
+}
+
+.countryAllData {
+  width: 100%;
+  margin-bottom: 36px;
+}
+
+.countryData {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+
+  color: #666666;
+}
+
+.countryData:not(:last-child) {
+  margin-bottom: 46px;
+}
+
+.totalConfirmed,
+.totalDeaths,
+.totalRecovered {
+  display: flex;
+  align-items: center;
+}
+
+.iconHeartbeat,
+.iconScull,
+.iconMedical {
+  margin-right: 29px;
+}
+
+.confirmButton {
+  width: 171px;
+  height: 49px;
+
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #ffffff;
+
+  background: #2196f3;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
