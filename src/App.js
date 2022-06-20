@@ -1,75 +1,52 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import Container from './components/Container';
 import Header from './components/Header';
 import fetchAllCountries from './service/fetchAllCountries';
 import CountriesList from './components/CounrtriesList';
 import Modal from './components/Modal/Modal';
-// import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
-  state = {
-    countries: [],
-    searchQuery: '',
-    showModal: false,
-    country: '',
-    visibleCountries: [],
-  };
+function App() {
+  const [countries, setCountries] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [country, setCountry] = useState('');
+  const [visibleCountries, setVisibleCountries] = useState([]);
 
-  componentDidMount() {
-    // this.setState({ loading: true });
-    // const page = this.state.page;
-    // const searchQuery = this.state.searchQuery;
-    this.fetchCountries();
-  }
+  useEffect(() => {
+    fetchCountries();
+  }, []);
 
-  async fetchCountries() {
+  async function fetchCountries() {
     const { Countries } = await fetchAllCountries();
     const countries = Countries.map(
       ({ ID, Country, TotalConfirmed, TotalDeaths, TotalRecovered }) => {
         return { ID, Country, TotalConfirmed, TotalDeaths, TotalRecovered };
       },
     );
-    this.setState({
-      countries,
-      visibleCountries: countries,
-    });
+    setCountries(countries);
+    setVisibleCountries(countries);
   }
 
-  handleSearchQuery = value => {
-    const filteredCountries = this.state.countries.filter(el => {
+  const handleSearchQuery = value => {
+    const filteredCountries = countries.filter(el => {
       return el.Country.toLowerCase().includes(value);
     });
-    this.setState({ visibleCountries: filteredCountries });
+    setVisibleCountries(filteredCountries);
   };
 
-  toggleModal = countryName => {
-    const country = this.state.countries.find(
-      ({ Country }) => Country === countryName,
-    );
-    this.setState({
-      showModal: !this.state.showModal,
-      country,
-    });
+  const toggleModal = countryName => {
+    const country = countries.find(({ Country }) => Country === countryName);
+    setShowModal(!showModal);
+    setCountry(country);
   };
 
-  render() {
-    return (
-      <Container>
-        <Header
-          searchQuery={this.state.searchQuery}
-          onSubmit={this.handleSearchQuery}
-        />
-        <CountriesList
-          countries={this.state.visibleCountries}
-          onOpenModal={this.toggleModal}
-        />
-        {this.state.showModal && (
-          <Modal onClose={this.toggleModal} country={this.state.country} />
-        )}
-      </Container>
-    );
-  }
+  return (
+    <Container>
+      <Header onSubmit={handleSearchQuery} />
+      <CountriesList countries={visibleCountries} onOpenModal={toggleModal} />
+      {showModal && <Modal onClose={toggleModal} country={country} />}
+    </Container>
+  );
 }
 
 export default App;

@@ -1,9 +1,6 @@
-import PropTypes from 'prop-types';
 import s from './CountriesList.module.css';
 
-function CountriesList(props) {
-  const { countries, onOpenModal } = props;
-
+function CountriesList({ countries, onOpenModal }) {
   return (
     <ol className={s.countriesList}>
       <li className={`${s.countryDataItem} ${s.tableHead}`}>
@@ -33,10 +30,5 @@ function CountriesList(props) {
     </ol>
   );
 }
-
-// CountriesList.propTypes = {
-//   imagePage: PropTypes.arrayOf(PropTypes.shape).isRequired,
-//   onOpenModal: PropTypes.func.isRequired,
-// };
 
 export default CountriesList;
